@@ -8,7 +8,7 @@
 4. 복습. 
 
   컴파일 환경
-  =========
+-------------
 Using IDE MS Visual Studio
 
 
