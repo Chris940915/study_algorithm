@@ -42,13 +42,24 @@ __따라서 리스트를 완전히 종주하려면 반드시 첫 번째 원소�
     if (!newElem) return false;
     
     newElem->data = data;
-    head = newElem;
+    head = newElem; // 틀렸음.
     return true;
 }
 
-  
+</code>
+
+위 코드에서는 헤드 포인터에 대한 지역 변수 사본만을 갱신하기 때문에 이 코드는 제대로 작동하지 않는다. (함수 인자로 단일 포인터 사용.)   
+제대로 작동하게 하려면 **헤드 포인터에 대한 포인터**를 넘겨줘야 한다.
+
+<code>
+  bool insertInFront(intElement **head, int data){
+    intElement *newElem = new intElement;
+    if (!newElem) return false;
+    
+    newElem->data = data;
+    *head = newElem; // 더블 포인터를 사용하여 헤드의 주소를 갱신.
+    return true;
+}
 </code>
 </pre>
-
-
 
