@@ -10,19 +10,23 @@ def lower_bound(start, end, n_list, k):
             end = m
     return end+1
 
+def solution_(n, n_list):
+    result = list()
+    result.append(n_list[0])
+
+    for i in range(1, n):
+        if result[-1] < n_list[i]:
+            result.append(n_list[i])
+        else:
+            seq = lower_bound(0, len(result), result, n_list[i])
+            result[seq-1] = n_list[i]
+
+    print(len(result))
+
 n = int(input())
-result = list()
 
 n_list = list(map(int, input().split()))
-sorted_list = sorted(n_list)
 
-result.append(n_list[0])
+solution_(n, n_list)
 
-for i in range(1, n):
-    if result[-1] < n_list[i]:
-        result.append(n_list[i])
-    else:
-        seq = lower_bound(0, len(result), result, n_list[i])
-        result[seq-1] = n_list[i]
 
-print(len(result))
