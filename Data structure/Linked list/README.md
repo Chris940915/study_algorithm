@@ -15,8 +15,8 @@ C이나 C++에서는 원소의 next포인터와 그 원소에 들어갈 데이�
   <pre>
   <code>
     struct intElement {
-    struct intElement *next;
-    int data;
+      struct intElement *next;
+      int data;
     };
   </code>
   </pre>
