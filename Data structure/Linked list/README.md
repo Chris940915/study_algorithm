@@ -81,10 +81,12 @@ __따라서 리스트를 완전히 종주하려면 반드시 첫 번째 원소�
   }
 </code>
 
+리스트가 끝났는지 확인하기 위하여 head != null을 추가하여 리스트가 끝났는지 확인.
+
 <code>
   public intElement find(intElement head, Object data){
-    while(head != null && head.data != data){ // head != null을 추가하여 리스트가 끝났는지 확인.
-      head = head.next;
+    while(head != null && head.data != data){ 
+        head = head.next;
     }
     return head;
   }
