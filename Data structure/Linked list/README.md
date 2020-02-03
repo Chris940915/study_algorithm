@@ -92,3 +92,38 @@ __따라서 리스트를 완전히 종주하려면 반드시 첫 번째 원소�
   }
 </code>
 </pre>
+
+
+### 원소의 삽입 및 삭제   
+
+단일 연결 리스트에 있는 원소들은 다음 원소에 대한 링크를 통해서만 관리할 수 있기 때문에 중간에 있는 원소를 삽입 또는 삭제하려면, 그 앞 원소의 링크를 수정해야 한다.  
+그리고 그 앞 원소를 알아낼 방법이 없기 때문에 **리스트를 종주해야 할 수 있다.**
+
+<pre>
+    리스트의 헤드 부분을 처리할 때는 한층 더 주의를 기울여야한다.
+<code>
+    bool deleteElement(intElement **head, intElement *deleteme){
+      intElement *elem = *head;
+
+      if (deleteme == *head) {
+          *head = elem->next;
+          delete deleteme;
+          return true;
+      }
+
+      while(elem) {
+          if(elem->next == deleteme){
+              elem->next = deleteme->next;
+              delete deleteme;
+              return true;
+          }
+          elem = elem -> next;
+      }
+      // *deletme 가 없는 경우*
+      return false;
+  }
+</code>
+
+삭제 및 삽입을 하려면 삭제 및 삽입할 위치의 바로 앞에 있는 원소에 대한 포인터 or 레퍼런스가 필요.
+
+</pre>
