@@ -4,7 +4,7 @@ def lower_bound(start, end, n_list, k):
 
     while(end-start > 0):
         m = (start+end)//2 
-        if n_list[m] < k:
+        if n_list[m] < k: # 리스트의 중간 값이라고 생각하고 있어야하는데, 중간 값에만 너무 집중하여 실수. 
             start = m + 1
         else:
             end = m
