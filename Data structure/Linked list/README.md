@@ -326,18 +326,38 @@ pop 연산에서는 스택이 비어있진 않은지 확인한 다음 맨 위에
 <pre>
 <code>
   bool pop(Element **stack, void **data){
-      Element *next;
-      while(*stack){
-          next = (*stack)->next;
-          delete *stack;
-          *stack = next;
-      }
-      return true;
+      Element *elem;
+      
+      if(!(elem=*stack)) return false;
+      
+      *data = elem->data;
+      *stack = elem->next;
+      delete elem;
+      return true; 
   };
 </code>
 </pre>
    
 객체지향 언어를 사용한다면 인터페이스를 훨씬 더 깔끔하게 설계할 수 있을것. 
+   
+꼭 필요한건 아니지만 createStack과 deleteStack 함수도 만들어 두면 좋다.   
+이런 함수를 만들지 않고 스택을 지울 때는 스택이 텅 비게 될 때까지 pop을 계속 호출하고, 스택을 만들 때는 스택 인자로 널 포인터를 넘겨주면서 push 함수를 호출하는 방법을 쓸 수도 있다.   
+하지만 스택을 만들고 지우기 위한 함수를 따로 만들어 주면 스택의 구현 방법과는 무관하게 사용할 수 있는 완전한 인터페이스를 구축할 수 있다.   
+동적 배열을 써서 스택을 구현할 때는 createStack/deleteStack 함수를 꼭 만들어야 할 가능성이 높다.   
+따라서 이런 함수들을 포함시키면 스택을 사용하는 프로그램 자체를 건드리지 않고 스택 인터페이스를 만들수 있다.   
+
+createStack, deleteStack 모두 이전의 함수들과 동일한 인자로 통일시키기 위하여 스택의 포인터의 포인터를 넘겨준다.
+
+
+<pre>
+    구현은 간단하다.
+<code>
+    bool createStack(Element **stack){
+        *stack = NULL;
+        return true;
+    }
+</code>
+</pre>
 
 
 
