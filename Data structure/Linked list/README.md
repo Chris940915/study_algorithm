@@ -395,22 +395,212 @@ insertAfter 함수를 호출할 때 NULL을 넘겨주는 방식으로 리트스�
 함수가 성공적으로 실행되면 true를. 그렇지 않으면 false를 반환한다.   
 head 와 tail 포인터는 항상 올바른 값으로 유지해야 한다.   
 </pre>   
+   
+   
+비교적 간단한 문제.  
+테일 포인터 관리만 추가하면 되며, 새로운 알고리즘을 설계할 필요는 없다.   
+   
+이 포인터는 언제 바꿔줘야 할까?   
+중간에서 작업을 할때는 head와 tail에 영향을 미치지 않는다. head 와 tail 포인터는 리스트의 맨 앞, 또는 맨 뒤에 있는 원소가 바뀔 때만 바꿔주면 된다.  
+자세하게 말하자면 맨 앞이나 맨 뒤에 원소를 추가하게 되면 추가된 원소가 맨 앞, 맨 뒤에 있는 원소가 된다.   
+그리고 맨 앞이나 맨 뒤에 있는 원소를 삭제하면 맨 앞에서 2번째, 맨 뒤에서 2번째 원소가 첫 번째 또는 마지막 원소로 바뀐다.   
+   ㅈ 앞 
+맨 앞 또는 맨 뒤에서 원소를 삽입/삭제하는 *특별케이스* 말고 또 다른 특별케이스를 생각해보자.   
+    1) NULL 포인터 인자가 들어오는 상황.   
+    2) 리스트 길이 때문에 문제가 생기는 상황.   
+   
+비어있는 리스트에는 아무 원소도 없기 때문에 맨 앞, 중간, 맨 뒤에 있는 원소를 따지는 것이 무의미하다.   
+구현한 알고리즘이 길이 0,1,2인 리스트의 경우에도 정확하게 작동하는지 확인해봐야 한다.   
+   
+remove 함수를 만들어본다.   
+*특별 케이스* : 앞에서 첫 번째 원소를 삭제하는 것 - 삭제할 원소를 head와 비교해서 그 경우를 처리해야 하는지 확인하면 된다.   
+   
+<pre>
+<code>
+    bool remove(Element *elem){
+        if (elem == head){
+            head = elem -> next;
+            delete elem;
+            return true; 
+        }
+    }
+</code>
+</pre>
+
+이제 일반적인 경우에 속하는 원소가 중간이 있는 경우의 코드를 만들어보자. 
+*일반 케이스* : 삭제하려는 원소가 중간에 있는 경우.   
+리스트에서의 현재 위치를 파악하기 위하여 원소에 대한 포인터(curPos)가 필요.   
+연결 리스트에서 원소를 삭제할 떄는 앞에 있는 원소의 next 포인터를 변경하기 위하여 앞에 있는 원소에 대한 포인터도 필요하다는 것을 잊지 말자.   
+앞에 있는 원소를 찾아내는 가장 쉬운 방법은 curPos->next 와 elem 을 비교하는 것이다. (반복문을 만들 때 어떤 원소도 빼먹지 않도록 해야한다.)   
+어차피 첫번째 원소를 특별 케이스로 처리하기 때문에 두번째 원소에서 시작해도 상관없지만, curPos를 다음 원소로 넘기기전에 반드시 curPos->next와 elem 을 비교하는 작업을 수행해야 한다.   
+그렇지 않으면 두번째 원소를 그냥 지나칠 수 있기 때문.   ㅊ
+
+<pre>
+<code>
+
+    bool remove(Element *elem, Element *head){
+        //중간 원소 처리를 위하여 현재 위치 저장.
+        Element *curpos = head;
+
+        if (elem == head){
+            head = elem -> next;
+            delete elem;
+            return true;
+        }
+
+        //중간 원소 처리.  
+        while(curpos){
+            if(curpos->next == elem){
+                curpos->next = elem->next;
+                delete elem;
+                return true;
+            }
+            curpos = curpos ->next;
+        }
+        return false;
+    }
+    
+</code>
+</pre>
+   
+이제 마지막 원소를 처리하는 케이스.   
+마지막 원소의 next 포인터는 NULL 이다.   
+이 원소를 삭제할 때는 마지막에서 두번째 원소의 next 포인터를 NULL로 바꾸고, 마지막 원소를 제거하면 된다.   
+앞서 중간 원소를 삭제하기 위한 코드로 마지막 원소도 삭제할 수 있으며, 마지막 원소를 삭제할 때는 tail 포인터를 변경만 해주면 된다.   
+curpos->next가 NULL이면 리스트의 마지막 원소를 변경한 것이므로 tail 포인터도 바꿔줘야 한다. 
+   
+다음과 같다.
+<pre>
+<code>
+    bool remove(Element *elem){
+        Element *curpos = head;
+
+        if (elem == head){
+            head = elem -> next;
+            delete elem;
+            return true;
+        }
+
+        while(curpos){
+            if(curpos->next == elem){
+                curpos->next = elem->next;
+                delete elem;
+
+                // tail 처리해주는 부분.
+                if(curpos->next == NULL)
+                    tail = curpos;
+                return true;
+            }
+            curpos = curpos ->next;
+        }
+        return false;
+    }
+</pre>
+</code>
+   
+이제 특별 케이스로 NULL 포인터가 들어왔을때와 길이가 0,1,2인 리스트일때를 생각해보자.   
+   
+가장 간단한 해결책은 elem이 NULL이면 false를 반환하는 것이다.   
+리스트의 길이가 0이면 elem이 NULL과 같아서 앞서 해결책으로 해결가능.   
+   
+리스트의 길이가 1이면 head와 tail 모두 하나뿐인 원소를 가리키고, 이 원소가 삭제할 수 있는 유일한 원소이다.   
+elem == head 가 참이고, elem->next == NULL이면 head가 NULL로 설정되고 그 원소가 메모리에서 제거된다.   
+하지만 tail은 여전히 제거된 원소(head의 주소)를 가리키게 된다.   
+**따라서 원소가 한개인 경우에는 tail을 NULL로 바꿔주는 처리를 따로 해줘야한다.**   
+   
+리스트의 길이가 2이면 첫번째 원소를 삭제하면 head가 두번째 원소가 되고, 두번째 원소를 삭제하면 tail이 첫번째 원소가 된다.   
+가운데 원소가 없다고 해서 딱히 문제될 일이 없다.   
+   
+**따라서, NULL 포인터와 리스트의 길이가 1인 경우만 특별히 처리해주면 된다.**   
+
+<pre>
+<code>
+
+    bool remove(Element *elem){
+        Element *curpos = head;
+
+        // NULL 포인터가 들어왔을시.
+        if(!elem)
+            return false;
+
+        if (elem == head){
+            head = elem -> next;
+            delete elem;
+            // 리스트의 길이가 1인 경우.
+            if(head ==NULL){
+                tail = NULL;
+            }
+            return true;
+        }
+
+        while(curpos){
+            if(curpos->next == elem){
+                curpos->next = elem->next;
+                delete elem;
+
+                // tail 처리해주는 부분.
+                if(curpos->next == NULL)
+                    tail = curpos;
+                return true;
+            }
+            curpos = curpos ->next;
+        }
+        return false;
+    }
+
+</pre>
+</code>
+   
+insertAfter를 코딩할 때도 비슷한 식으로 하면 된다.    
+새로운 원소를 할당해야하므로 새로운 원소가 메모리 할당이 제대로 됐는지 확인하고, 메모리 누설이 생기지 않는지도 확인해야한다.   
+delete의 특별케이스와 전반적으로 매우 유사.
 
 
+<pre>
+<code>
+    bool insertAfter(Element *elem, int data){
+        Element *newElem, *curpos = head;
 
+        newElem = new Element;
 
+        if(!newElem)
+            return false;
+        newElem->data = data;
 
+        // 리스트의 맨 앞에 삽입하는 경우.
+        if(!elem){
+            elem->next = head;
+            head = newElem;
 
+            // 비어있는 리스트에 삽입하는 경우.
+            if(!tail){
+                tail = newElem;
+            }
+            return true;
+        }
 
+        // 일반적인 경우.
+        while(curpos){
+            if(curpos == elem){
+                newElem->next = curpos->next;
+                curpos->next = newElem;
 
+                // 리스트 맨 뒤에 추가하는 경우.
+                if(!(newElem->next)){
+                    tail = newElem;
+                }
+                return true;
+            }
+            curpos = curpos->next;
+        }
 
-
-
-
-
-
-
-
+        // 삽입할 위치를 찾지 못할경우 메모리 할당 해제. 
+        delete newElem;
+        return false;
+    }
+    
+</code>
+</pre>
 
 
     
