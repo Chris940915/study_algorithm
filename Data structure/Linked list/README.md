@@ -327,7 +327,7 @@ pop 연산에서는 스택이 비어있진 않은지 확인한 다음 맨 위에
 <pre>
 <code>
   bool pop(Element **stack, void **data){
-      Element *elem;
+      Element *elem = *stack;
       
       if(!(elem=*stack)) return false;
       
