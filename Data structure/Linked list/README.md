@@ -438,7 +438,7 @@ remove 함수를 만들어본다.
 <pre>
 <code>
 
-    bool remove(Element *elem, Element *head){
+    bool remove(Element *elem){
         //중간 원소 처리를 위하여 현재 위치 저장.
         Element *curpos = head;
 
