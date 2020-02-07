@@ -757,7 +757,9 @@ delete의 특별케이스와 전반적으로 매우 유사.
 
         // 시작 위치에서부터 먼저 m만큼 앞으로 나가게 한다.
         for (i=0; i<m; i++;){
+            
             if(current->next){
+            
                 current = current->next;
             }else{
                 return NULL;
