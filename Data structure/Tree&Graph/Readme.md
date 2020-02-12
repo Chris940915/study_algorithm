@@ -14,7 +14,7 @@
 [이진 트리 문제](#이진-트리-문제)   
 [ - 프리오더 종주](#프리오더-종주)   
 [- 재귀 호출을 쓰지 않는 프리오더 종주](#재귀-호출을-쓰지-않는-프리오더-종주)
-
+[- 가장 가까운 공통 조상](#가장-가까운-공통-)
 
 
 
@@ -415,5 +415,70 @@ DFS에서는 각 층별로 모든 자식 노드를 저장해야 할 필요가 �
 
 </code>
 </pre>
+   
+### 가장 가까운 공통 조상   
+   
+<pre>
+   어떤 이진 검색 트리에 들어있는 두 노드의 값이 주어졌을 때 가장 가까이 있는 공통 조상을 찾아내라.   
+   두 값은 모두 분명히 그 트리 안에 있다고 가정해도 좋다.   
+   
+</pre>
+   
+우선 직관적인 알고리즘은 각 노드에서 위로 올라가면서 만나는 지점을 찾는 것.   
+하지만, 이진 검색 트리의 특성을 전혀 활용하지 않으며 효율적이지 못하다.   
+이진 검색 트리만의 성질을 써서 가장 가까운 공통 조상을 더 효율적으로 찾아내는 방법을 생각.   
+
+가장 가까운 공통 조상은 예시를 들어 생각해보면 두 노드 값 사이에 있는 유일한 조상이다.   
+두 노드의 값을 value1, value2라고 하고 방법을 정리해보면 다음과 같다.   
+   
+<pre>
+   현재 노드 검사
+   value1과 value2가 모두 현재 노드의 값보다 작으면
+      왼쪽 자식 검사
+   value1과 value2가 모두 현재 노드의 값보다 크면
+      오른쪽 자식 검사
+   그렇지 않으면
+      현재 노드가 가장 가까운 공통 조상
+</pre>
+   
+트리 문제에다가 알고리즘 자체에 재귀적인 구조가 보여 재귀 호출을 사용해야 할 것 같지만 꼭 재귀 호출을 사용안해도 괜찮다.   
+*재귀 호출은 트리의 여러 가지를 돌아다니거나 특별한 노드의 패턴을 검사할 때 가장 빛을 발한다.*   
+여기에서는 그냥 트리를 따라 내려가기 때문에 반복문을 사용해도 쉽게 풀 수 있다.      
+
+<pre>
+<code>
+
+   Node findLowestCommonAncestor( Node root, int value1, int value2 ) {
+      while(root != null){
+         int value = root.getValue();
+         if(value > value1 && value > value2){
+            root = root.getLeft();
+         }else if(value < value1 && value < value2) {
+            root = root.getRight();
+         }else{
+            return root; 
+         }
+      }
+      
+      return null; // 빈 트리인 경우.
+   }
+
+   // 노드를 다루기 위해 오버라이드.
+   Node findLowestCommonAncestor( Node root, Node child1, Node child2 ){
+      if (root == null || child1 == null || child2 == null){
+         return null;
+      }
+      
+      return findLowestCoonAncestor(root, child1.getValue(), child2.getValue());
+   }
+
+</code>
+</pre>
+   
+이 알고리즘의 실행 시간은 어떻게 될까?   
+가장 가까운 공통 조상까지 특정 경로를 따라가야 한다.   
+한 경로를 따라 특정 노드로 이동하는데 걸리는 시간은 O(log(n))이다.   
+따라서 이 알고리즘은 O(log(n)) 알고리즘이다.
 
 
+**힙 보충 필요**
