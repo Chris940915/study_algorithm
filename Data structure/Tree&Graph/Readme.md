@@ -154,7 +154,7 @@ BST에서는 노드의 왼쪽 자식의 값이 반드시 자신의 값 이하이
     Node lookup(Node root, int value){
         while(root != null){
             int currval = root.getValue();
-            if(currval == value) return root;
+            if(currval == value) break;
             if(currval < value) {
                 root = root.getRight();
             }else{
@@ -196,7 +196,7 @@ BST에서는 노드의 왼쪽 자식의 값이 반드시 자신의 값 이하이
     Node findNode(Node root, int value) {
         if( root == null ) return null;
         int curval = root.getValue();
-        if( currval == value) break;
+        if( currval == value) return root;
         if( crrval < value ){ 
             findNode(root.getRight(), value);
         }else{
