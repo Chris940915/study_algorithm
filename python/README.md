@@ -13,3 +13,4 @@
 하지만, python은 두가지에 다 해당되지않고 Call by object reference (객체 참조에 의한 호출)에 해당한다. 
 
 
+https://yes90.tistory.com/47
