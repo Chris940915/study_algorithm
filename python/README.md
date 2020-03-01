@@ -1,29 +1,12 @@
 python에 대하여 알아보자. 
 
-
-[함수 인자 전달 방식](#함수-인자-전달-방식)
    
 [list, tuple, set, ditonary](#list,tuple,set,dictionary)   
 [- list](#list)   
 [- tuple](#tuple)   
-[- set](#set)
-
----------------------------------------
-
-# 함수 인자 전달 방식
-
-크게 2가지가 있다.
-
-1. Call by value - 값에 의한 호출
-
-2. Call by reference - 주소(참조)에 의한 호출   
+[- set](#set)   
    
-하지만, python은 두가지에 다 해당되지않고 Call by object reference (객체 참조에 의한 호출)에 해당한다. 
-
-python은 기본적으로 변수를 메모리 주소에 저장하는 것이 아니라 변수에 객체를 할당한다.   
-
-https://yes90.tistory.com/47
-
+[함수 인자 전달 방식](#함수-인자-전달-방식)
 
 ------------------------------------
    
@@ -89,7 +72,7 @@ python의 list에서 중요한 점 중 하나는 **인덱싱, 슬라이싱**이�
       full_slice = s.copy()
       
       # 위 2가지 경우에는 얕은 복사에 해당한다.
-      # 얕은 복사의 경우, 메모리 주소는 다르게 할당되지만 요소를 변경할 경우 같이 변경된다.
+      # 얕은 복사의 경우, 메모리 주소는 다르게 할당되고 요소를 변경하면 함께 변경되지 않는다.
      
       full_slice == s
       #True
@@ -98,7 +81,7 @@ python의 list에서 중요한 점 중 하나는 **인덱싱, 슬라이싱**이�
       #False
       
       s[0] = 3
-      # full_slice = [3,0,0,0,0]
+      # full_slice = [2,0,0,0,0]
       
       # 깊은 복사도 있다.   
       
@@ -172,6 +155,9 @@ tuple은 **immutalbe한 순서가 있는 객체의 집합.**
 순서가 있기 때문에 list와 같이 인덱스로 접근 가능.   
 
 * tuple은 사실 '(, )'가 필요없다.   
+* tuple은 하나의 원소만을 가질 수 없다.
+  대신, 하나의 원소만을 가질때는 ',' 를 붙여서 표현한다.
+  ex) (3,)
 * tuple을 이용하여 함수에서 여러 값을 한꺼번에 리턴시킬 수 있다.   
 
 <pre>
@@ -197,6 +183,131 @@ tuple은 **immutalbe한 순서가 있는 객체의 집합.**
    
    
 ## set
-      
-   
+set은 수학의 집합과 비슷하여 **mutable하며 순서가 없고 unique한 값을 가진다.**   
+중괄호를 사용하는 것은 dictionary와 비슷하지만, key가 없고 value만 존재한다.      
 
+* set(집합)의 원소 추가
+   원소 추가는 add 메소드를 사용한다.
+   
+<pre>
+<code>
+   k = {100, 105}
+   k.add{50)
+   
+   #k = {100, 105, 50}
+   
+</code>
+</pre>
+
+* set의 update
+   set은 중복은 자동 제거되고 수정이라는 개념보다 여러데이터를 한번에 추가할 때 사용.   
+   
+<pre>
+<code>
+   k = {1, 2, 3}
+   k.update([3,4,5])
+   
+   #k = {1, 2, 3, 4, 5}
+</code>
+</pre>
+
+set은 list와 다르게 한쪽의 값을 변경해도 다른 set에 영향을 미치지 않는다. 
+
+<pre>
+   <code>
+      a = {1, 2, 3, 4}
+      b = a.copy()
+      
+      a is b
+      #False
+      
+      a == b 
+      #True
+      
+      b.add(5)
+      #a = {1, 2, 3, 4}
+      #b = {1, 2, 3, 4, 5}
+      
+   </code>
+</pre>
+
+
+## dictionary
+dictionary은 **mutable하며 순서가 없는 key, value으로 맵핑되어 있는 집합이다.**
+
+* 키로는 immutable한 값은 사용할 수 있지만, mutable한 값은 사용할 수 없다.   
+* 값(value)는 중복될 수 있지만, 키(key)가 중복되면 마지막 값으로 덮어씌워진다.   
+* mutable한 객체이므로 키로 접근하여 값을 변경할 수 있다.       
+   
+* 단일 수정은 키로 접근하여 값을 할당.
+<pre>
+   <code>
+      a = {'alice':[1,2,3], 'bob':20}
+      a['alice'] = 5 
+      #a = {'alice':5, 'bob':20}
+   </code>
+</pre>
+   
+* 여러 값 수정은 update 메소드를 사용한다. 키가 없는 값이면 추가된다.   
+<pre>
+   <code>
+      a = {'alice':[1,2,3], 'bob':20}
+      a.update({'bob':99, 'tony':99})
+      #a = {'alice':[1,2,3], 'bob':99, 'tony':99}
+   </code>
+</pre>
+   
+   
+* dictionary for 문   
+   for 문을 통해 dictionary를 돌리면 Key값이 할당된다.  
+   순서는 임의적이며, 같은 순서를 보장하지 않는다.   
+   <pre>
+      <code>
+         a = {'alice':[1,2,3], 'bob':20}
+         for key in a:
+            print(key)
+
+         # alice
+         # bob
+
+      </code>
+   </pre>
+   
+   value 값으로 for문을 반복하기 위해서는 **values()** 를 사용한다.   
+   <pre>
+      <code>
+         for val in a.values():
+            print(val)
+         
+         # [1,2,3]
+         # 20
+      </code>
+   </pre>
+   
+   key 와 value를 한꺼번에 for문을 반복하려면 **items()** 를 사용한다.   
+   <pre>
+      <code>
+         for key, val in a.items():
+            print(key, val)
+         
+         # alice [1,2,3]
+         # bob 20
+      </code>
+   </pre>
+   
+---------------------------------------
+
+# 함수 인자 전달 방식
+
+크게 2가지가 있다.
+
+1. Call by value - 값에 의한 호출
+
+2. Call by reference - 주소(참조)에 의한 호출   
+   
+하지만, python은 두가지에 다 해당되지않고 Call by object reference (객체 참조에 의한 호출)에 해당한다. 
+
+python은 기본적으로 변수를 메모리 주소에 저장하는 것이 아니라 변수에 객체를 할당한다.   
+
+https://yes90.tistory.com/47
+https://zzonglove.tistory.com/21
