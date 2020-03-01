@@ -3,7 +3,7 @@ python에 대하여 알아보자.
 
 [함수 인자 전달 방식](#함수-인자-전달-방식)
    
-[list, tuple, set, ditonary](#list,tuple,set,dictionary)
+[list, tuple, set, ditonary](#list,tuple,set,dictionary)   
 [- list](#list)
    
    
