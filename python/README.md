@@ -5,7 +5,7 @@ python에 대하여 알아보자.
    
 [list, tuple, set, ditonary](#list,tuple,set,dictionary)   
 [- list](#list)   
-[- tuple](#tuple)
+[- tuple](#tuple)   
 [- set](#set)
 
 ---------------------------------------
