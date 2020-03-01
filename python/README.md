@@ -5,7 +5,7 @@ python에 대하여 알아보자.
    
 [list, tuple, set, ditonary](#list,tuple,set,dictionary)   
 [- list](#list)
-   
+[- tuple](#tuple)
    
 ---------------------------------------
 
@@ -32,9 +32,9 @@ https://yes90.tistory.com/47
 리스트, 튜플, 셋, 딕셔너리는 모두 각각의 특징과 차이점에 따라 쓰임새가 다르다.   
 볼때마다 헷갈리므로 이번 기회에 정리를 하여 명확하게 해보자.
    
-### list
+## list
 
-mutable한 순서가 있는 객체 집합으로 python의 list는 기본적으로 **동적배열**이다.  
+list는 **mutable한 순서가 있는 객체 집합**으로 python의 list는 기본적으로 **동적배열**이다.  
 또한, python의 문자열은 list로 나타낼 수 있지만 immutable하다는 점을 명심하자.   
 
 
@@ -163,3 +163,36 @@ pop(0)의 경우, 맨 앞에 요소를 삭제하고 뒤에 모든 요소들을 �
 list 내의 모든 원소들의 자료형을 변경할때는 map() 사용.   
 map()은 리스트의 원소를 지정된 함수로 처리해주는 함수로 원본 리스트를 변경하지 않고 새 리스트를 생성.
  
+## tuple
+   
+tuple은 **immutalbe한 순서가 있는 객체의 집합.**   
+따라서, 리스트와 같이 내용을 변경하는 append 같은 메서드는 사용할 수 없고, *요소의 정보를 구하는 메서드만 사용 가능.*   
+   
+순서가 있기 때문에 list와 같이 인덱스로 접근 가능.   
+
+* tuple은 사실 '(, )'가 필요없다.   
+* tuple을 이용하여 함수에서 여러 값을 한꺼번에 리턴시킬 수 있다.   
+
+<pre>
+   <code>
+      def minmax(items):
+         return min(items), max(items)
+     
+      minmax([7,5,1,11,55])
+      
+      >> (1,55)
+   </code>
+</pre>
+   
+* 특정 값의 인덱스 구하기. 
+
+<pre>
+   <code>
+      a = (38,21,53,19,53)
+      a.index(53)
+      >> 2
+   </code>
+<pre>
+   
+   
+
