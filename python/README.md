@@ -193,7 +193,7 @@ tuple은 **immutalbe한 순서가 있는 객체의 집합.**
       a.index(53)
       >> 2
    </code>
-<pre>
+</pre>
    
    
 ## set
