@@ -1,7 +1,8 @@
 
 
 [재귀 호출 문제](#재귀-호출-문제)   
-[ - 이진 검색](#이진-검색)
+[ - 이진 검색](#이진-검색)   
+[ - 문자열 순열](#문자열-순열)
 
 
 # 재귀 호출 문제
@@ -110,3 +111,61 @@
 이진 검색에서는 매 단계를 반복할 때마다 검색 공간을 절반씩 떨궈내기 때문에 O(log(n))알고리즘이다.   
 따라서 모든 원소를 무작정 검색하는 O(n) 알고리즘에 비해 더 빠르다.   
 하지만 이진 검색을 하려면 배열이 정렬되어 있어야 하며, 이미 정렬된 배열이 아닌 이상 O(nlog(n)) 시간을 투자해서 정렬을 해야 한다는 단점이 있다.   
+   
+   
+## 문자열 순열
+   
+<pre>
+  어떤 문자열에 있는 문자들을 나열하는 모든 가능한 순서를 출력하는 루틴을 구현하라.   
+  원본 문자열에 있는 모든 문자들을 사용하는 모든 순열을 출력하면 된다.   
+  예를 들어, "hat"이라는 문자열이 주어진다면 "tha", "aht", "tah", "ath", "hta", "hat"이라는 문자열을 출력해야 한다.   
+  같은 문자가 여러 개 들어있어도 서로 다른 문자로 간주한다.   
+  "aaa"라는 문자열이 주어진다면 "aaa"를 여섯 번 출력해야 한다.   
+  순열을 출력하는 순서는 마음대로 정해도 된다.
+</pre>
+   
+순열을 늘어놓은 목록에서 패턴을 찾아보자.   
+첫번째(가장 왼쪽) 위치에 들어갈 문자를 선택하면 그 문자를 변경하기 전에 나머지 문자들로 만들 수 있는 모든 순열을 출력해야 한다.   
+이 과정을 계속 반복한다.   
+바꿔 말하면 순열을 만들어내는 절차는 주어진 위치에 들어갈 문자를 하나 고르고, 방금 선택한 문자를 바꾸기 전에 다음 위치부터 시작해서 오른쪽으로 가면서 순열을 만들어내는 절차를 반복하는 것으로 생각할 수 있다.   
+   
+재귀적으로 정의를 해보자.   
+n 위치에서 시작하는 모든 순열을 찾아내기 위해서는 n 위치에 들어갈 수 있는 모든 문자를 순서대로 집어넣고, n 위치에 들어가는 각 글자별로 n+1 위치부터 시작하는 모든 순열을 찾아내면 된다(재귀 케이스).   
+n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종결된 것이므로 결과를 출력하고, n보다 작은 위치에서 글자를 바꾸는 단계로 돌아간다(기본 케이스).   
+   
+   
+   
+자바로 구현해보면 다음과 같다.
+
+<pre>
+  <code>
+    void permute( String str ) {
+      int           length = str.length();
+      boolean[]     used   = new boolean[length];
+      StringBuffer  out    = new StringBuffer();
+      char[]        in     = str.toCharArray();
+      doPermute( in, out, used, length, 0); 
+    }
+    
+    void doPermute(char[] in, StringBuffer out, boolean[] used, int length, int level){
+      if(level == length){
+        System.out.println( out.toString());
+        return;
+      }
+      for (int i=0; i<length; i++) {
+        if( used[i]) continue;
+        out.append(used[i]);
+        used[i] = True;
+        doPermute(in, out, used, length, level+1);
+        used[i] = False;
+        //Python 의 pop과 동일.
+        out.setLength( out.length() - 1);
+      }
+    }
+    
+  </code>
+</pre>
+   
+플래그와 입력 문자열을 저장하기 위한 두 개의 배열을 할당.   
+출력 문자열을 만들기 위한 StringBuffer 객체를 만드는 permute라는 wrapper(래퍼) 메소드를 사용.   
+문자는 StringBuffer 객체에 추가시키며, 재귀 호출이 반환되면 버퍼의 길이를 줄이는 방법으로 마지막 문자를 떨궈낸다.   
