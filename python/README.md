@@ -211,8 +211,6 @@ set은 수학의 집합과 비슷하여 **mutable하며 순서가 없고 unique�
 </code>
 </pre>
 
-set은 list와 다르게 한쪽의 값을 변경해도 다른 set에 영향을 미치지 않는다. 
-
 <pre>
    <code>
       a = {1, 2, 3, 4}
