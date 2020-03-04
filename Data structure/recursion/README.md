@@ -212,7 +212,13 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
     
     void doCombine(char[] instr, StringBuilder outstr, int length, int level, int start){
       for (int i = start; i++ ){
+        outstr.Append(instr[i]);
+        Console.WriteLine(outstr);
         
+        if( i < length - 1 ) {
+          doCombine(instr, outstr, length, level+1, i+1);
+        }
+        outstr.Length = oustr.Length - 1; 
       }
     }
   </code>
