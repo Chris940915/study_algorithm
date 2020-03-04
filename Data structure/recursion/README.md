@@ -146,6 +146,7 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
       char[]        in     = str.toCharArray();
       doPermute( in, out, used, length, 0); 
     }
+    
     void doPermute(char[] in, StringBuffer out, boolean[] used, int length, int level){
       if(level == length){
         System.out.println( out.toString());
@@ -157,7 +158,7 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
         used[i] = True;
         doPermute(in, out, used, length, level+1);
         used[i] = False;
-        //Python 의 pop과 동일.
+        # Python 의 pop과 동일.
         out.setLength( out.length() - 1);
       }
     }
