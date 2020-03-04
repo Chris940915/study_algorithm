@@ -147,6 +147,10 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
       doPermute( in, out, used, length, 0); 
     }
     
+  </code>
+</pre>
+<pre>
+  <code>
     void doPermute(char[] in, StringBuffer out, boolean[] used, int length, int level){
       if(level == length){
         System.out.println( out.toString());
@@ -165,6 +169,7 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
     
   </code>
 </pre>
+   
    
 플래그와 입력 문자열을 저장하기 위한 두 개의 배열을 할당.   
 출력 문자열을 만들기 위한 StringBuffer 객체를 만드는 permute라는 wrapper(래퍼) 메소드를 사용.   
