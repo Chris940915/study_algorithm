@@ -152,11 +152,6 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
       char[]        in     = str.toCharArray();
       doPermute( in, out, used, length, 0); 
     }
-    
-  </code>
-</pre>
-<pre>
-  <code>
     void doPermute(char[] in, StringBuffer out, boolean[] used, int length, int level){
       if(level == length){
         System.out.println( out.toString() );
@@ -172,6 +167,10 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
         out.setLength( out.length() - 1);
       }
     }
+  </code>
+</pre>
+<pre>
+  <code>
   </code>
 </pre>
    
