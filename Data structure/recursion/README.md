@@ -152,28 +152,62 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
       char[]        in     = str.toCharArray();
       doPermute( in, out, used, length, 0); 
     }
-    void doPermute(char[] in, StringBuffer out, boolean[] used, int length, int level){
-      if(level == length){
-        System.out.println( out.toString() );
-        return;
-      }
-      for (int i=0; i <length; i++){
-        if( used[i]) continue;
-        out.append(used[i]);
-        used[i] = True;
-        doPermute(in, out, used, length, level+1);
-        used[i] = False;
-        # Python 의 pop과 동일.
-        out.setLength( out.length() - 1);
-      }
-    }
   </code>
 </pre>
 <pre>
   <code>
+    void doPermute(char[] in, StringBuffer out, boolean[] used, int length, int level){
+        if(level == length){
+          System.out.println( out.toString() );
+          return;
+        }
+        for (int i=0; i<length; i++){
+          if( used[i]) continue;
+          out.append(used[i]);
+          used[i] = True;
+          doPermute(in, out, used, length, level+1);
+          used[i] = False;
+          # Python 의 pop과 동일.
+          out.setLength( out.length() - 1);
+        }
+      } 
   </code>
 </pre>
    
   
 
 ## 문자열 조합
+   
+<pre>
+  문자열에 있는 문자들의 모든 가능한 조합을 출력하는 함수를 구현하라.   
+  조합의 길이는 1이상이고 문자열 길이 이하이다.   
+  문자의 배치 순서만 다를 뿐 같은 문자들이 들어가 있는 조합은 같은 조합으로 간주한다.   
+  즉. "123"이라는 문자열이 입력됐을 때 "12"와 "23"은 서로 다른 조합이지만 "21"은 "12"와 같다.   
+</pre>
+   
+앞에 나온 문자열 순열 문제와 쌍을 이루는 문제.   
+   
+알고리즘을 정리해보도록 하자.
+
+<pre>
+  입력 시작 위치부터 입력 문자열 끝까지의 각 글자에 대해
+    출력 문자열의 현재 위치에 그 글자를 선택
+    글자들을 출력 문자열로 출력
+    현재 글자가 입력 문자열의 마지막 글자가 아니면 
+      방금 선택한 글자 다음 글자에서 반복을 시작하여 다음 위치부터 시작하는 나머지 조합 생성
+</pre>
+
+이 알고리즘을 C#으로 코딩해보면 다음과 같다.
+   
+   
+<pre>
+  <code>
+    void combine( string str ){
+      int       length = str.Length;
+      char[]    instr  = str.ToCharArray();
+      StringBuilder outstr = new StringBuilder();
+      
+      doCombine( instr, outstr, length, 0, 0);
+    }
+  </code>
+</pre>
