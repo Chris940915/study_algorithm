@@ -161,7 +161,6 @@ n 이 입력 문자열에 있는 문자의 개수보다 많으면 순열이 종�
           System.out.println( out.toString() );
           return;
         }
-        for (int i=0; i<length; i++){
           if( used[i]) continue;
           out.append(used[i]);
           used[i] = True;
