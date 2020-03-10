@@ -27,3 +27,5 @@
 
   * 함수, 변수, 속성은 lowercase_underscore 형식을 따른다.   
   * 보호(protected) 인스턴스 속성은 _leading_underscore 형식을 따른다.
+  * 비공개(private) 인스턴스 속성은 __double_leading_underscore 형식을 따른다.   
+  * 클래스와 예외는 CapitalizedWord 형식을 따른다.   
