@@ -149,6 +149,48 @@ pop(0)의 경우, 맨 앞에 요소를 삭제하고 뒤에 모든 요소들을 �
    
 list 내의 모든 원소들의 자료형을 변경할때는 map() 사용.   
 map()은 리스트의 원소를 지정된 함수로 처리해주는 함수로 원본 리스트를 변경하지 않고 새 리스트를 생성.
+   
+   
+#### 2차원 리스트를 1차원 리스트로 만들기    
+2차원 리스트를 1차원 리스트로 만들때 어떻게 해야할까.   
+다른 언어에서는 보통 반복문을 이용해 리스트를 더한다.
+
+<pre>
+   <code>
+      my_list = [[1,2], [3,4], [5,6]]
+      answer = []
+      for i in my_list:
+          answer += i
+   </code>
+</pre>
+   
+파이썬의 다양한 기능을 사용하면, for 문을 사용하지 않고도 리스트를 이어붙일 수 있다.   
+
+<pre>
+   <code>
+      my_list = [[1,2], [3,4], [5,6]]
+      
+      #방법 1 - sum 
+      answer = sum(my_list, [])
+      
+      #방법 2 - itertools.chain
+      import itertools
+      list(itertools.chain.from_iterable(my_list))
+      
+      #방법 3 - itertools와 unpacking
+      import itertools
+      list(itertools.chain(*my_list))
+      
+      #방법 4 - list comprehension 이용
+      [element for array in my_list for element in array]
+      
+      #방법 5 - reduce 함수 이용
+      from functools import reduce
+      list(reduce(lambda x,y: x+y, my_list))
+
+   </code>
+</pre>
+
  
 ## tuple
    
