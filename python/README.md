@@ -340,6 +340,39 @@ dictionary은 **mutable하며 순서가 없는 key, value으로 맵핑되어 있
       </code>
    </pre>
    
+#### dictionary 정렬.   
+   
+dictionary_ 라는 이름의 dictionary 객체가 있을때, key 값을 기준으로 value 값을 기준으로 정렬할 수 있다.   
+dictionary의 items() 경우, ((key1, value1), (key2, value2) ....) 의 dict_items() 객체를 반환하기 때문에 다음과 같이 정렬한다.
+      
+<pre>
+   <code>
+   key_dict   = sorted(dictionary_.items(), key=(lambda: x, x[0]))
+   value_dict = sorted(dictionary_.items(), key=(lambda: x, x[1]))
+   </code>
+</pre>
+   
+#### dictionary value 최대, 최솟값.
+   
+dictionary의 values()의 경우, dict_values() 객체를 **메모리를 아끼기 위하여** 리스트를 대신하여 반환한다.   
+따라서 리스트에서 사용하는 min(), max() 함수를 사용하여 최솟값과 최대값을 구할 수 있다.   
+   
+<pre>
+   <code>
+      min_value = min(dictionary_.values())   
+      max_value = max(dictionary_.values())   
+   </code>
+</pre>   
+   
+하지만, 이는 value의 최대값을 갖는 dictionary의 key값을 찾는데는 문제가 있어서 다음과 같이 키 값을 구할 수 있다.   
+   
+<pre>
+   <code>
+      min_key = min(dictionary_.keys(), key=(lambda x: dictionary[x]))   
+      max_key = max(dictionary_.keys(), key=(lambda x: dictionary[x]))   
+   </code>
+</pre>
+    
 ---------------------------------------
 
 # 함수 인자 전달 방식
