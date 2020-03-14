@@ -361,3 +361,51 @@ https://zzonglove.tistory.com/21
 ---------------------------------------
 
 # Collection 
+
+
+
+
+
+
+
+
+---------------------------------------
+# 제곱, 제곱근
+   
+math 모듈에서 pow()와 sqrt()를 제공.    
+모듈 대신에 곱 연산자 2개를 사용해서도 사용 가능.
+
+<pre>
+   <code>
+      import math
+      
+      # a^n 
+      a_n = a**n
+      math.pow(a, n)
+   
+   </code>
+</pre>
+
+제곱근의 경우 반대로 생각하면 되며, 완전제곱수인지 판별할 수 있다.
+
+<pre>
+   <code>
+      import math
+      
+      a_n = a**0.5
+      math.sqrt(a,2)
+      
+      def check(x):
+         temp = x**0.5
+         
+         # 완전제곱수면 뒤에 소숫점이 없음.
+         if int(temp) == temp:
+            #예외의 경우가 발생하므로 제곱하여 확인. 
+            if temp**2 == x:
+               return True
+         return False
+       
+   </code>
+</pre>
+
+
