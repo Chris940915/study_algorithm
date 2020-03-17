@@ -8,7 +8,7 @@ python에 대하여 알아보자.
 [- dictionary](#dictionary)   
    
 [함수 인자 전달 방식](#함수-인자-전달-방식)   
-[- 얕은 복사, 깊은 복사](#얕은-복사,-깊은-복사)   
+[- 얕은 복사, 깊은 복사](#얕은-복사-깊은-복사)   
    
 [Collection 모듈](#Collection)   
    
@@ -392,7 +392,7 @@ https://yes90.tistory.com/47
 https://zzonglove.tistory.com/21
    
    
-## 얕은 복사, 깊은 복사
+## 얕은 복사 깊은 복사
 
 
 
