@@ -390,8 +390,46 @@ python은 기본적으로 변수를 메모리 주소에 저장하는 것이 아�
 
 https://yes90.tistory.com/47
 https://zzonglove.tistory.com/21
+      
+mutable object들은 Call by reference 형식으로 불리면, object가 전달되기 전의 원본(변수) 자체를 바꿀 수 있다.   
    
+<pre>
+   <code>
+      def updateList(list1):
+         list1 += [10]
+      
+      n = [5, 6]
+      print(id(n)) # 140312184155336
+      updateList(n)
+      print(n)     # [5, 6, 10]
+      print(id(n)) # 140312184155336
+   </code>
+</pre>
    
+위의 예제를 보면, **Call by reference**를 이용해서 list인 n을 불러냈고 list 자체가 변경되었다.   
+   
+<pre>
+   <code>
+      def updateNumber(n):
+         print(id(n))
+         n += 10
+      b = 5
+      print(id(b))      #1055680
+      updateNumber(b)   #1055680
+      print(b)          #5
+   </code>
+</pre>
+   
+위의 예제에서는 object가 전달되지만 바뀌지 않는다.   
+하지만, 함수 안에서의 n과 밖에서의 b는 id()를 통해 확인한 것 처럼 서로 같은 주소값을 지칭하고 있다.   
+그럼에도 불구하고 n += 10 에서 바뀌지 않는 이유는 **pass by value** 이기 때문이다.   
+말 그대로 함수에 의해 어떤 값(n)이 필요해질때 object 자체를 전달하지 않고 변수의 '값'만 전달한 것이다.      
+**그래서 변수가 참조하는 object는 변하지 않았지만, 함수 범위 내에서의 object 자체는 변했습니다.**   
+   
+immutable한 int object를 함수에서 호출해도 어차피 int 자료형은 immutable하므로 바뀌지 않는다.    
+따라서 값(value)만 넘겨주고 함수 범위(scope)내에서 새로운 object를 만드는 것이 더 편한 방법.   
+immutable은 **call by value**, mutable은 **call by reference**를 사용하는 것이 일반적.   
+
 ## 얕은 복사 깊은 복사   
    
 객체의 복사는 크게 얕은 복사(shallow copy)와 깊은 복사(deep copy)로 나뉩니다.   
