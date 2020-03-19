@@ -10,7 +10,7 @@ def bfs(n, k, visit, way):
 
     # 길로 가는 최단거리
     visit[n] = 0
-    # 최단거리로 가는 경우의 수 
+    # 경우의 수
     way[n] = 1
 
     while queue:
