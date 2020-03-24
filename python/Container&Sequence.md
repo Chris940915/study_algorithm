@@ -11,10 +11,14 @@
 리스트, 튜플, 셋, 딕셔너리는 모두 각각의 특징과 차이점에 따라 쓰임새가 다르다.   
 볼때마다 헷갈리므로 이번 기회에 정리를 하여 명확하게 해보자.
      
-**dictionary 와 set은 Container 객체**   
-**list 와 tuple은 Sequence 객체** 
- 
- 
+**dictionary 와 set은 Container 객체**  
+Container는 iterable(반복가능한) 객체로 순서정보를 포함하지 않는 객체이다.   
+   
+**list 와 tuple은 Sequence(Container) 객체**   
+Sequence는 순서를 가진 Container(iterable) 객체이다.   
+
+
+
 ## list
 
 list는 **mutable한 순서가 있는 객체 집합**으로 python의 list는 기본적으로 **동적배열**이다.  
