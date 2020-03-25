@@ -6,4 +6,14 @@ json으로 데이터를 주고받는 사례가 점점 많아지고 있다.
 load와 loads로 Json file을 읽을 수 있으며, encoding의 종류에 따라 오류가 발생한다.   
    
 또한, multiple dictionary를 가지고 있는 json file을 읽을 수가 없어 조치가 필요하다. (원래는 데이터를 생성하는 단계에서 multiple dictionary를 [] 에 넣는게 맞음.)   
-
+   
+   
+<pre>
+   <code>
+      import json 
+      
+      with open('파일이름.json', 'r') as json_file:
+         tweets = [json.loads(line) for line in json_file]
+         
+   </code>
+</pre>
