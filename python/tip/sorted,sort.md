@@ -60,6 +60,6 @@ Age를 attribtue로 갖는 Studenet 클래스를 선언하고 사용해보자.
  sorted 는 Timesort 알고리즘을 사용하며 이 알고리즘은 데이터 셋에 존재하는 순서를 이용하는 이점을 갖고 있다.   
 
 
-Ref. https://docs.python.org/3/howto/sorting.html
-     http://blog.weirdx.io/post/50236
-     https://medium.com/@fiv3star/python-sorted-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-timsort-dca0ec7a08be
+Ref. https://docs.python.org/3/howto/sorting.html     
+     http://blog.weirdx.io/post/50236     
+     https://medium.com/@fiv3star/python-sorted-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-timsort-dca0ec7a08be     
