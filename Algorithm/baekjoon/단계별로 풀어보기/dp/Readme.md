@@ -31,7 +31,7 @@
       elif f[n]>-1: # 배열 f가 -1으로 초기회되어있다고 가정.
         return f[n]
       else:
-        f[n] = f[n-2] + f[n-1] # 중간 계산 결과를 caching.
+        f[n] = fib(n-2) + fib(n-1) # 중간 계산 결과를 caching.
         return f[n]
       
   </code>
