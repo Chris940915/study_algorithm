@@ -22,7 +22,7 @@
 많은 계산이 중복된다.    
 계산을 버리지 않고 기억.    
     
-**Memorization**
+**Memoization**
 <pre>
   <code>
     def fib(n):
@@ -52,7 +52,7 @@
 또 다른 예로 이항계수 (Binomial Coefficient - nCk)가 있음.        
 n개 중 k를 선택.     
 
-**Memorization**    
+**Memoization**    
 <pre>
     <code>
         def binomial(n, k):
