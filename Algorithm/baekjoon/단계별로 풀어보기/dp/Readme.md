@@ -84,3 +84,22 @@ n개 중 k를 선택.
 위의 예제들은 순환식이 주어지고, 동적 계획법 기법을 적용하라는 문제.     
 **하지만 보통의 동적 계획법 문제들은 순환식을 직접 세우고 동적 계획법까지 직접 적용해야한다.**      
 동적 계획법 적용은 익숙해지면 쉽기 때문에 순환식을 어떻게 세울거냐의 싸움.      
+        
+1. 일반적으로 최적화문제(optimisation problem) 혹은 카운팅(counting) 문제에 적용.    
+2. 주어진 문제에 대해 순환식(recurrence equation)을 정의한다.    
+3. 순환식을 memorization 혹은 bottom-up 방식으로 푼다.    
+    
+* subproblem 들을 풀어서 문제를 푸는 방식으로 분할정복과 공통점이 있음.    
+* 분할정복법의 문제들은 서로 dijoint하지만 동적 계획법은 그렇지않음.    
+* **즉 서로 overlapping하는 subproblem들을 해결함으로써 원래 문제를 해결.**  
+    
+분할정복은 quick sort를 생각하면 된당.    
+pivot를 기준으로 분할된 두 subproblem들을 푼다.    
+하지만, 행렬경로문제를 생각하면 subproblem들이 겹치는 것은 Dynamic programming이다.    
+
+* Optimal Substructure를 확인하는 질문.    
+**최적해의 일부분이 그 부분에 대한 최적해인가?**   
+순환식은 optimal substructure를 표현한다.    
+
+
+
