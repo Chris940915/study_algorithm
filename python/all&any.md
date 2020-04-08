@@ -4,7 +4,7 @@
 ### all(iterable)
 **all()** 은 인자로 전달된 모든 값이 True인지 아닌지 확인.    
 <pre>
-  Return True if all elements of the iterable are ture (or if the iterable is empty. 
+  Return True if all elements of the iterable are true (or if the iterable is empty. 
     
   <code>
     def all(iterable):
