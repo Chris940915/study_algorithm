@@ -98,8 +98,13 @@ pivot를 기준으로 분할된 두 subproblem들을 푼다.
 하지만, 행렬경로문제를 생각하면 subproblem들이 겹치는 것은 Dynamic programming이다.    
 
 * Optimal Substructure를 확인하는 질문.    
-**최적해의 일부분이 그 부분에 대한 최적해인가?**   
 순환식은 optimal substructure를 표현한다.    
+    
+**최적해의 일부분이 그 부분에 대한 최적해인가?**    
+Yes면 맞지만... 예외.   
+최장경로문제가 예외로 있음.   
+하지만, subproblem으로 풀 수 있기때문에 다른 형태의 optimal substructure를 가지는 것일 뿐 optimal substructrue를 가지지 않는건 아니다.    
+
 
 
 
