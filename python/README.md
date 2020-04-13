@@ -6,7 +6,7 @@ python은 Cpython....
     
 ## 효율적인 파이썬 작성    
 
-1. 내장함수(built-in fuctions)를 사용하라.   
+*1. 내장함수(built-in fuctions)를 사용하라.   
 
 https://docs.python.org/3/library/functions.html
 
