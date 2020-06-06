@@ -1,8 +1,8 @@
 def heapify(unsorted, index, heap_size):
     largest = index
 
-    left_index = n*2 + 1
-    right_index = n*2 + 2
+    left_index = 2*index + 1
+    right_index = 2*index + 2
 
     if left_index < heap_size and unsorted[largest] < unsorted[left_index] : 
         largest = left_index
@@ -28,7 +28,7 @@ def heap_sort(unsorted):
     
     
     for i in range(n-1, 0, -1):
-        unsorted[0], unsorted[n-1] = unsorted[n-1], unsorted[0]
+        unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
         heapify(unsorted, 0, i)
     return unsorted
 
