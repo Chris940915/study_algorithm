@@ -18,7 +18,7 @@ for e in '('+enter+')':
                 break
             result += temp
     else:
-        while stack[-1] != '(' and priority[stack[-1]] < priority[e]:
+        while stack[-1] != '(' and priority[stack[-1]] >= priority[e]:
             result += stack.pop()
         stack.append(e)
 print(result)

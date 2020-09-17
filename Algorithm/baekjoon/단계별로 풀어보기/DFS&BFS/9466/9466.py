@@ -1,6 +1,6 @@
 import sys
 
-sys.setrecursionlimit(20000)
+sys.setrecursionlimit(111111)
 
 def dfs(x):
     global result
