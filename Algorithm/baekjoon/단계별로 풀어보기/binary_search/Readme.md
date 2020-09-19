@@ -14,9 +14,9 @@
           mid = (lower+upper)//2
           
           if target <= mid:
-              lower = mid + 1
+              upper = mid + 1
           else:
-              upper = mid - 1
+              lower = mid - 1
        return upper
        
   </code>
@@ -33,8 +33,8 @@
         mid = (lower+upper)//2
         
         if target < mid:
-            lower = mid + 1
+            upper = mid + 1
         else:
-            upper = mid - 1
+            lower = mid - 1
   </code>
 </pre>
