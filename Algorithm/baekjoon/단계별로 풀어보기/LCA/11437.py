@@ -15,7 +15,6 @@ def make_graph(v, raw_edges, root):
         edges[edge[1]].append(edge[0])
     q = deque([root])
     while len(q):
-        print(q)
         cur = q.popleft()
         
         for search in edges[cur]:
@@ -40,7 +39,6 @@ def lca(tree, depth, u, v):
     while u != v:
         u = tree[u]
         v = tree[v]
-    print(v)
     return v
 
 
@@ -49,8 +47,6 @@ n = int(input())
 edges = [list(map(int, input().split())) for _ in range(n-1)]
 
 tree, depth = make_graph(n, edges, 1)
-print(tree)
-print(depth)
 m = int(input())
 result = list()
 
